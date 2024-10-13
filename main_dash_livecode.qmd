@@ -60,12 +60,13 @@ gap_map_ggplotly <- ggplotly(gap_map, tooltip = "text")
 
 ```{r}
 top_20_countries <- gap_2007 |>    arrange(desc(lifeExp)) |> 
-  head(10) |>
+  head(20) |>
   mutate(tooltip_label = paste(country, round(lifeExp,1),sep = ": "))|> ggplot(aes(y=reorder(country, lifeExp),x=lifeExp, fill = lifeExp, text = tooltip_label))+
   geom_col()+geom_text(aes(label = round(lifeExp,1)), nudge_x = -10, color = "white")+ 
   theme(legend.position ="none")+
   labs(ylab="Country", xlab="Life Exp")
 ```
+
 ```{r}
 top_20_countries_plotly <- ggplotly(top_20_countries, tooltip="text")
 ```
